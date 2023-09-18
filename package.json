@@ -1,0 +1,34 @@
+{
+  "name": "estoes_challenge_back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuliGon/EstoEs_Challenge_Back.git"
+  },
+  "author": "Juligon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuliGon/EstoEs_Challenge_Back/issues"
+  },
+  "homepage": "https://github.com/JuliGon/EstoEs_Challenge_Back#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.33.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
