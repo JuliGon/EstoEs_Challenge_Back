@@ -21,7 +21,7 @@ const swaggerSpec = {
  		},
  		servers: [
  			{
- 				url: "https://estoeschallengeback-production.up.railway.app/",
+ 				url: "https://estoeschallengeback-production.up.railway.app",
  			},
  		],
  	},
