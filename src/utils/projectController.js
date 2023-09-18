@@ -38,33 +38,40 @@ const getProjectById = async (req, res, next) => {
 };
 
 // Función para crear un nuevo proyecto
-const createProject = async ({
-	name,
-	description,
-	projectManager,
-	assignedTo,
-	status,
-}) => {
-	const existingProject = await Project.findOne({
-		where: { name: { [Op.iLike]: `%${name}%` } },
-	});
+const createProject = async (req, res, next) => {
+	try {
+		const { name, description, projectManager, assignedTo, status } = req.body;
 
-	if (existingProject) {
-		const error = new Error("The project already exists");
-		error.status = 404;
-		throw error;
+		if (!name || !description || !projectManager || !assignedTo || !status) {
+			const error = new Error("All fields are required");
+			error.status = 400;
+			throw error;
+		}
+		
+		const existingProject = await Project.findOne({
+			where: { name: { [Op.iLike]: `%${name}%` } },
+		});
+
+		if (existingProject) {
+			const error = new Error("The project already exists");
+			error.status = 409;
+			throw error;
+		}
+
+		const newProject = await Project.create({
+			name: name,
+			description: description,
+			projectManager: projectManager,
+			assignedTo: assignedTo,
+			status: status,
+		});
+
+		res.status(201).json(newProject);
+	} catch (error) {
+		next(error);
 	}
-
-	const newProject = await Project.create({
-		name: name,
-		description: description,
-		projectManager: projectManager,
-		assignedTo: assignedTo,
-		status: status,
-	});
-
-	return newProject;
 };
+
 
 // Función para eliminar un proyecto por su ID
 const deleteProject = async (req, res, next) => {
@@ -121,5 +128,5 @@ module.exports = {
 	getProjectById,
 	createProject,
 	updateProject,
-	deleteProject
+	deleteProject,
 };

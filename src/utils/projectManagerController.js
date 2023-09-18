@@ -37,24 +37,37 @@ const getPMById = async (req, res, next) => {
 };
 
 // Función para crear un pm
-const createPM = async ({ name, image }) => {
-	const existingPM = await ProjectManager.findOne({
-		where: { name: { [Op.iLike]: `%${name}%` } },
-	});
+const createPM = async (req, res, next) => {
+  try {
+    const { name, image } = req.body;
 
-	if (existingPM) {
-		const error = new Error("The PM already exists");
-		error.status = 404;
-		throw error;
-	}
+    if (!name || !image) {
+      const error = new Error("Name and image are required");
+      error.status = 400;
+      throw error;
+    }
 
-	const newPM = await ProjectManager.create({
-		name: name,
-		image: image,
-	});
+    const existingPM = await ProjectManager.findOne({
+      where: { name: { [Op.iLike]: `%${name}%` } },
+    });
 
-	return newPM;
+    if (existingPM) {
+      const error = new Error("The PM already exists");
+      error.status = 409;
+      throw error;
+    }
+
+    const newPM = await ProjectManager.create({
+      name: name,
+      image: image,
+    });
+
+    return res.status(201).json(newPM);
+  } catch (error) {
+    next(error);
+  }
 };
+
 
 // Función para eliminar un pm por su ID
 const deletePM = async (req, res, next) => {
