@@ -3,7 +3,7 @@ const errorHandler = require("../utils/errorHandler");
 
 // Imports
 const projectsRouter = require("./projects");
-const projectManagersRouter = require("./projectmanagers");
+const projectManagersRouter = require("./projectManagers");
 const assignmentsRouter = require("./assignments");
 
 const router = Router();
