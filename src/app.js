@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const routes = require("./routes/index.js");
@@ -29,6 +30,7 @@ const swaggerSpec = {
  	apis: [`${path.join(__dirname, "./routes/*.js")}`],
 };
 
+server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
