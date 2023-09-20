@@ -28,12 +28,7 @@ const swaggerSpec = {
  	apis: [`${path.join(__dirname, "./routes/*.js")}`],
 };
 
-const corsOptions = {
-  origin: '*', 
-  optionsSuccessStatus: 200, 
-};
-
-server.use(cors(corsOptions));
+server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
