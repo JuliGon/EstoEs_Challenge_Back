@@ -96,6 +96,13 @@ const updateProject = async (req, res, next) => {
 	const { id } = req.params;
 	const { name, description, projectManager, assignedTo, status } = req.body;
 
+	console.log("ID:", id);
+  console.log("Name:", name);
+  console.log("Description:", description);
+  console.log("Project Manager:", projectManager);
+  console.log("Assigned To:", assignedTo);
+  console.log("Status:", status);
+
 	try {
 		const project = await Project.findByPk(id);
 
