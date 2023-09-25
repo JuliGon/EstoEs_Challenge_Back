@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const projectManagerController = require("../utils/projectManagerController")
+const projectManagerController = require("../controllers/projectManagerController")
 
 /**
  * @swagger

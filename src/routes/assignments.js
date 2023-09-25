@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const assignmentController = require("../utils/assignmentController")
+const assignmentController = require("../controllers/assignmentController")
 
 /**
  * @swagger
