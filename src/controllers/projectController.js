@@ -80,7 +80,7 @@ const deleteProject = async (req, res, next) => {
 		const deletedProject = await Project.destroy({
 			where: { id: id },
 		});
-		if (deleteProject === 0) {
+		if (deletedProject === 0) {
 			const error = new Error("Project not found");
 			error.status = 404;
 			throw error;
